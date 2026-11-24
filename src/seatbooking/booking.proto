@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+service BookingService{
+  rpc BookSeats(stream BookingRequest) returns (stream BookingResponse){}
+}
+
+message BookingRequest{
+  string seat = 1;
+  string client_name = 2;
+}
+
+enum StatusEnum{
+  BOOKED = 0;
+  ALREADY_BOOKED = 1;
+  UNABLE_TO_BOOK = 2;
+}
+
+message BookingResponse{
+  bool booked = 1;
+  optional StatusEnum status = 2;
+  string seat = 3;
+  string client_name = 4;
+  int32 available_seats = 5;
+  string date = 6;
+}
+
+
+
+
